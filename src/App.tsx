@@ -14,8 +14,4 @@ function App() {
   );
 }
 
-function test() {
-  console.log("hej");
-}
-
 export default App;
