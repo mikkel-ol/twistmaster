@@ -2,7 +2,13 @@ import useWebAnimations from "@wellyshen/use-web-animations";
 import React, { RefObject, useRef } from "react";
 import "./SwingTimer.scss";
 
-export const SwingTimer = ({ speed }: { speed: number }) => {
+export const SwingTimer = ({
+  speed,
+  play,
+}: {
+  speed: number;
+  play: boolean;
+}) => {
   const {
     ref: timerRef,
     playState,
@@ -35,6 +41,8 @@ export const SwingTimer = ({ speed }: { speed: number }) => {
     const animation = getAnimation();
     const attackSpeed = 1000 / speed;
 
+    if (animation?.playState !== "running") return;
+
     if (speed === 0) animation?.finish();
     else {
       animation?.play();
@@ -44,13 +52,18 @@ export const SwingTimer = ({ speed }: { speed: number }) => {
     updateMarker(markerRef, attackSpeed);
   }, [speed, getAnimation]);
 
+  React.useEffect(() => {
+    if (play === true) getAnimation()?.play();
+    else if (play === false) getAnimation()?.finish();
+  }, [play, getAnimation]);
+
   return (
     <div className="container">
       <div className="swingTimer">
         <div className="internal" ref={timerRef}></div>
         <div className="twistMarker" ref={markerRef}></div>
       </div>
-      <div className="attackSpeed">{1 / speed}</div>
+      <div className="attackSpeed">{(1 / speed).toFixed(1)}</div>
     </div>
   );
 };
