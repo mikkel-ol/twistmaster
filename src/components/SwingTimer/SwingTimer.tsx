@@ -1,11 +1,15 @@
 import useWebAnimations from "@wellyshen/use-web-animations";
-import React from "react";
+import React, { RefObject, useRef } from "react";
 import "./SwingTimer.scss";
 
 export const SwingTimer = ({ speed }: { speed: number }) => {
-  const { ref, playState, getAnimation } = useWebAnimations<HTMLDivElement>({
+  const {
+    ref: timerRef,
+    playState,
+    getAnimation,
+  } = useWebAnimations<HTMLDivElement>({
     keyframes: {
-      transform: "translateX(500px)", // Move by 500px
+      width: "100%",
     },
     animationOptions: {
       duration: 1000,
@@ -23,23 +27,41 @@ export const SwingTimer = ({ speed }: { speed: number }) => {
     onFinish: ({ playState, animate, animation }) => {
       // Triggered when the animation enters the finished state
     },
-
-    // More useful options...
   });
+
+  const markerRef = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const animation = getAnimation();
+    const attackSpeed = 1000 / speed;
 
     if (speed === 0) animation?.finish();
     else {
       animation?.play();
       animation?.updatePlaybackRate(speed);
     }
-  }, [speed]);
+
+    updateMarker(markerRef, attackSpeed);
+  }, [speed, getAnimation]);
 
   return (
-    <div className="swingTimer">
-      <div className="internal" ref={ref}></div>
+    <div className="container">
+      <div className="swingTimer">
+        <div className="internal" ref={timerRef}></div>
+        <div className="twistMarker" ref={markerRef}></div>
+      </div>
+      <div className="attackSpeed">{1 / speed}</div>
     </div>
   );
+};
+
+const updateMarker = (ref: RefObject<HTMLDivElement>, speed: number) => {
+  const percentage = (400 / speed) * 100;
+
+  if (ref.current) {
+    ref.current.style.right = percentage + "%";
+
+    if (percentage > 100) ref.current.style.display = "none";
+    else ref.current.style.display = "block";
+  }
 };
