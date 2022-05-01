@@ -1,4 +1,4 @@
-import useWebAnimations from "@wellyshen/use-web-animations";
+import useWebAnimations, { GetAnimation } from "@wellyshen/use-web-animations";
 import React, { RefObject, useRef } from "react";
 import "./SwingTimer.scss";
 
@@ -37,20 +37,10 @@ export const SwingTimer = ({
 
   const markerRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    const animation = getAnimation();
-    const attackSpeed = 1000 / speed;
-
-    if (animation?.playState !== "running") return;
-
-    if (speed === 0) animation?.finish();
-    else {
-      animation?.play();
-      animation?.updatePlaybackRate(speed);
-    }
-
-    updateMarker(markerRef, attackSpeed);
-  }, [speed, getAnimation]);
+  React.useEffect(
+    () => handleAnimation(speed, getAnimation, markerRef),
+    [speed, getAnimation, markerRef]
+  );
 
   React.useEffect(() => {
     if (play === true) getAnimation()?.play();
@@ -77,4 +67,23 @@ const updateMarker = (ref: RefObject<HTMLDivElement>, speed: number) => {
     if (percentage > 100) ref.current.style.display = "none";
     else ref.current.style.display = "block";
   }
+};
+
+const handleAnimation = (
+  speed: number,
+  getAnimation: GetAnimation,
+  markerRef: RefObject<HTMLDivElement>
+) => {
+  const animation = getAnimation();
+  const attackSpeed = 1000 / speed;
+
+  if (animation?.playState !== "running") return;
+
+  if (speed === 0) animation?.finish();
+  else {
+    animation?.play();
+    animation?.updatePlaybackRate(speed);
+  }
+
+  updateMarker(markerRef, attackSpeed);
 };

@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import "./App.scss";
 import { SwingTimer } from "./components";
 
-function App() {
+export const App = () => {
   const [speed, setSpeed] = useState(1);
   const [play, setPlay] = useState(true);
 
@@ -23,6 +23,4 @@ function App() {
       <button onClick={() => setPlay(!play)}>Play / pause</button>
     </div>
   );
-}
-
-export default App;
+};
