@@ -2,7 +2,7 @@
 // https://raw.githubusercontent.com/facebook/create-react-app/main/.eslintrc.json
 
 {
-  "extends": "eslint:recommended",
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "commonjs": true,
@@ -11,49 +11,15 @@
     "jest": true
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json"
   },
   "rules": {
     "no-console": "off",
-    "strict": ["error", "global"],
     "curly": "warn",
     "at-rule-no-unknown": 0,
     "scss/at-rule-no-unknown": 0,
     "no-unused-vars": "off",
     "no-undef": "off"
-  },
-  "overrides": [
-    {
-      "files": [
-        "docusaurus/website/src/**/*.js",
-        "packages/cra-template/**/*.js",
-        "packages/react-error-overlay/**/*.js",
-        "packages/react-scripts/fixtures/kitchensink/template/{src,integration}/**/*.js",
-        "test/fixtures/*/src/*.js"
-      ],
-      "excludedFiles": ["packages/react-error-overlay/*.js"],
-      "extends": ["react-app", "react-app/jest"]
-    },
-    {
-      "files": [
-        "test/fixtures/webpack-message-formatting/src/{AppLintError,AppLintWarning,AppUnknownFile}.js"
-      ],
-      "rules": {
-        "no-unused-vars": "off",
-        "no-undef": "off"
-      }
-    },
-    {
-      "files": ["test/fixtures/webpack-message-formatting/src/Export5.js"],
-      "rules": {
-        "import/no-anonymous-default-export": "off"
-      }
-    },
-    {
-      "files": ["test/fixtures/issue-5176-flow-class-properties/src/App.js"],
-      "rules": {
-        "no-dupe-class-members": "off"
-      }
-    }
-  ]
+  }
 }

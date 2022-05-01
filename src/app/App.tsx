@@ -3,23 +3,11 @@ import "./App.scss";
 import { SwingTimer } from "./components";
 
 export const App = () => {
-  const [speed, setSpeed] = useState(1);
   const [play, setPlay] = useState(true);
-
-  let a: string = "0";
-
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter") setSpeed(1 / Number(a));
-  };
 
   return (
     <div className="App">
-      <SwingTimer speed={speed} play={play}></SwingTimer>
-      <input
-        type="number"
-        onKeyDown={handleKeyDown}
-        onChange={(val) => (a = val.target.value)}
-      />
+      <SwingTimer play={play}></SwingTimer>
       <button onClick={() => setPlay(!play)}>Play / pause</button>
     </div>
   );

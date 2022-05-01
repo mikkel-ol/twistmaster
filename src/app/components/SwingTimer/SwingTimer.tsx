@@ -1,51 +1,15 @@
 import useWebAnimations, { GetAnimation } from "@wellyshen/use-web-animations";
 import React, { RefObject, useRef } from "react";
+import { useAppSelector } from "../../../shared/store";
 import "./SwingTimer.scss";
 
-export const SwingTimer = ({
-  speed,
-  play,
-}: {
-  speed: number;
-  play: boolean;
-}) => {
-  const {
-    ref: timerRef,
-    playState,
-    getAnimation,
-  } = useWebAnimations<HTMLDivElement>({
-    keyframes: {
-      width: "100%",
-    },
-    animationOptions: {
-      duration: 1000,
-      iterations: Number.MAX_SAFE_INTEGER, // for now
-      direction: "normal",
-      easing: "linear",
-      playbackRate: 1,
-    },
-    onReady: ({ playState, animate, animation }) => {
-      // Triggered when the animation is ready to play
-    },
-    onUpdate: ({ playState, animate, animation }) => {
-      // Triggered when the animation enters the running state or changes state
-    },
-    onFinish: ({ playState, animate, animation }) => {
-      // Triggered when the animation enters the finished state
-    },
-  });
+export const SwingTimer = ({ play }: { play: boolean }) => {
+  // states
+  const attackSpeed = useAppSelector((state) => state.attackSpeed.value);
 
+  // refs
   const markerRef = useRef<HTMLDivElement>(null);
-
-  React.useEffect(
-    () => handleAnimation(speed, getAnimation, markerRef),
-    [speed, getAnimation, markerRef]
-  );
-
-  React.useEffect(() => {
-    if (play === true) getAnimation()?.play();
-    else if (play === false) getAnimation()?.finish();
-  }, [play, getAnimation]);
+  const timerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="container">
@@ -53,7 +17,7 @@ export const SwingTimer = ({
         <div className="internal" ref={timerRef}></div>
         <div className="twistMarker" ref={markerRef}></div>
       </div>
-      <div className="attackSpeed">{(1 / speed).toFixed(1)}</div>
+      <div className="attackSpeed">{attackSpeed.toFixed(1)}</div>
     </div>
   );
 };

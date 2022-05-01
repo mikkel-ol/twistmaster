@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@shared/store";
+import { RootState } from "../store";
 
 interface AttackSpeedState {
   value: number;
