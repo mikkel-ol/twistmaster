@@ -18,6 +18,6 @@ const attackSpeedSlice = createSlice({
 });
 
 export const { set } = attackSpeedSlice.actions;
-export const selectAttackSpeed = (state: RootState) => state.counter.value;
+export const selectAttackSpeed = (state: RootState) => state.attackSpeed.value;
 
 export default attackSpeedSlice.reducer;

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import attackSpeed from "../states/attack-speed";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    attackSpeed,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

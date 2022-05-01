@@ -13,13 +13,14 @@
   "parserOptions": {
     "ecmaVersion": 2018
   },
-  "plugins": ["stylelint-scss"],
   "rules": {
     "no-console": "off",
     "strict": ["error", "global"],
     "curly": "warn",
     "at-rule-no-unknown": 0,
-    "scss/at-rule-no-unknown": 0
+    "scss/at-rule-no-unknown": 0,
+    "no-unused-vars": "off",
+    "no-undef": "off"
   },
   "overrides": [
     {
