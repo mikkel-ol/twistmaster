@@ -1,4 +1,4 @@
-import { useAnimation } from "../SwingTimer/animation";
+import { useAnimation } from "src/shared/hooks/animationHook";
 import "./Bar.scss";
 
 export const Bar = () => {
