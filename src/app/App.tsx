@@ -1,5 +1,5 @@
 import React from "react";
-import { set } from "src/shared/states/attack-speed";
+import { setAttackSpeed } from "src/shared/states/attack-speed";
 import { toggle } from "src/shared/states/attacking";
 import { useAppDispatch } from "src/shared/store";
 import "./App.scss";
@@ -13,7 +13,7 @@ export const App = () => {
       <SwingTimer></SwingTimer>
       <input
         type="number"
-        onChange={(ev) => dispatch(set(Number(ev.target.value)))}
+        onChange={(ev) => dispatch(setAttackSpeed(Number(ev.target.value)))}
       />
       <button onClick={() => dispatch(toggle())}>Play / pause</button>
     </div>

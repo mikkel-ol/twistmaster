@@ -10,12 +10,12 @@ const attackSpeedSlice = createSlice({
   name: "attackSpeed",
   initialState,
   reducers: {
-    set(state, action: PayloadAction<number>) {
+    setAttackSpeed(state, action: PayloadAction<number>) {
       state.value = action.payload;
     },
   },
 });
 
-export const { set } = attackSpeedSlice.actions;
+export const { setAttackSpeed } = attackSpeedSlice.actions;
 
 export default attackSpeedSlice.reducer;
