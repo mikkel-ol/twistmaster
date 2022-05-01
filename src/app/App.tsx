@@ -1,14 +1,21 @@
-import React, { SyntheticEvent, useState } from "react";
+import React from "react";
+import { set } from "src/shared/states/attack-speed";
+import { toggle } from "src/shared/states/attacking";
+import { useAppDispatch } from "src/shared/store";
 import "./App.scss";
 import { SwingTimer } from "./components";
 
 export const App = () => {
-  const [play, setPlay] = useState(true);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="App">
-      <SwingTimer play={play}></SwingTimer>
-      <button onClick={() => setPlay(!play)}>Play / pause</button>
+      <SwingTimer></SwingTimer>
+      <input
+        type="number"
+        onChange={(ev) => dispatch(set(Number(ev.target.value)))}
+      />
+      <button onClick={() => dispatch(toggle())}>Play / pause</button>
     </div>
   );
 };

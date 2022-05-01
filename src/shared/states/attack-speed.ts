@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 
 interface AttackSpeedState {
   value: number;
@@ -18,6 +17,5 @@ const attackSpeedSlice = createSlice({
 });
 
 export const { set } = attackSpeedSlice.actions;
-export const selectAttackSpeed = (state: RootState) => state.attackSpeed.value;
 
 export default attackSpeedSlice.reducer;
