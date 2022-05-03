@@ -1,0 +1,36 @@
+.info-icon {
+  position: absolute;
+
+  top: 5vh;
+  right: 5vh;
+}
+
+.tooltip-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px;
+
+  > * {
+    margin: 0;
+  }
+}
+
+.tooltip-shortcuts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tooltip-shortcut {
+  display: flex;
+  flex-direction: row;
+
+  code {
+    width: 24px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
