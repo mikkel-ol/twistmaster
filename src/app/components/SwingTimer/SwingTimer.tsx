@@ -11,8 +11,9 @@ export const SwingTimer = () => {
   return (
     <div className="container">
       <div className="swingTimer">
-        <Bar></Bar>
-        <Marker></Marker>
+        <Bar>
+          <Marker></Marker>
+        </Bar>
       </div>
       <div className="attackSpeed">{attackSpeed.toFixed(1)}</div>
     </div>
