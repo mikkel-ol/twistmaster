@@ -6,6 +6,12 @@ const isShortcut = (key: string, shortcut: Shortcut) => {
     case Shortcut.P:
       return key.toUpperCase() === "P";
 
+    case Shortcut.One:
+      return key.toUpperCase() === "1";
+
+    case Shortcut.Two:
+      return key.toUpperCase() === "2";
+
     default:
       return false;
   }

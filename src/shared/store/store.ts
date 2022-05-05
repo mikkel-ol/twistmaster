@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootEpic } from "../epics";
 import { epicMiddleware } from "../middlewares";
+import activeAbility from "../states/active-ability";
 import attackSpeed from "../states/attack-speed";
 import attacking from "../states/attacking";
 
@@ -9,6 +10,7 @@ const setup = () => {
     reducer: {
       attackSpeed,
       attacking,
+      activeAbility,
     },
     middleware: [epicMiddleware],
   });
