@@ -4,6 +4,7 @@ import { toggle } from "src/shared/states/attacking";
 import { useAppDispatch } from "src/shared/store";
 import "./App.scss";
 import { SwingTimer } from "./components";
+import { ActionBar } from "./components/ActionBar";
 import { InfoTooltip } from "./components/InfoTooltip";
 
 export const App = () => {
@@ -15,6 +16,7 @@ export const App = () => {
     <div className="App">
       <InfoTooltip></InfoTooltip>
       <SwingTimer></SwingTimer>
+      <ActionBar></ActionBar>
     </div>
   );
 };
