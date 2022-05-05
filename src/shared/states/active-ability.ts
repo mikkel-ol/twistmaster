@@ -11,7 +11,7 @@ const activeAbility = createSlice({
   name: "activeAbility",
   initialState,
   reducers: {
-    setActiveAbility(state, action: PayloadAction<Ability>) {
+    setActiveAbility(state, action: PayloadAction<Ability | null>) {
       state.value = action.payload;
     },
   },

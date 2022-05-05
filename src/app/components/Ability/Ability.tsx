@@ -6,8 +6,7 @@ import { useAppDispatch } from "src/shared/store";
 import "./Ability.scss";
 
 interface AbilityProps {
-  img: string;
-  ability: AbilityModel;
+  ability: AbilityModel | null;
   shortcut?: Shortcut;
 }
 
@@ -22,7 +21,7 @@ export const Ability = (props: AbilityProps) => {
 
   return (
     <div className="ability-container">
-      <img src={props.img} alt="" />
+      <div style={{ background: `url(${props.ability?.img})` }}></div>
     </div>
   );
 };
