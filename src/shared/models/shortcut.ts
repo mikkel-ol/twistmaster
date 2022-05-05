@@ -1,5 +1,5 @@
 export enum Shortcut {
   P = "p",
-  One = "One",
-  Two = "Two",
+  One = "1",
+  Two = "2",
 }

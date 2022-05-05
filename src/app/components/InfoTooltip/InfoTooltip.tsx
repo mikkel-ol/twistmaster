@@ -4,6 +4,19 @@ import { Shortcut } from "src/shared/models/shortcut";
 import { EnumUtil } from "src/shared/utils/enum-utils";
 import "./InfoTooltip.scss";
 
+const tooltipText = (shortcut: Shortcut) => {
+  switch (shortcut) {
+    case Shortcut.P:
+      return "Play/pause the swing timer";
+
+    case Shortcut.One:
+      return "Use ability on slot 1";
+
+    case Shortcut.Two:
+      return "Use ability on slot 2";
+  }
+};
+
 const Shortcuts = () => {
   const options = EnumUtil.toArray(Shortcut);
 
@@ -15,7 +28,7 @@ const Shortcuts = () => {
           {options.map((shortcut) => (
             <div className="tooltip-shortcut" key={shortcut}>
               <code>{shortcut}:</code>
-              <p>Play/pause the swing timer</p>
+              <p>{tooltipText(shortcut)}</p>
             </div>
           ))}
         </div>
